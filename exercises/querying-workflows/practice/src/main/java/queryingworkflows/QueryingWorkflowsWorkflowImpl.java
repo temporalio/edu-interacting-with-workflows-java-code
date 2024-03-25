@@ -1,9 +1,6 @@
 package queryingworkflows;
 
 import java.time.Duration;
-
-import javax.management.Query;
-
 import org.slf4j.Logger;
 
 import io.temporal.activity.ActivityOptions;
@@ -28,10 +25,12 @@ public class QueryingWorkflowsWorkflowImpl implements QueryingWorkflowsWorkflow 
   @Override
   public String workflow(String input) {
     
-    currentState = "started";
+    // TODO PART A: Set `currentState` to `started`
+    
     logger.info("Signal workflow started with input: {}", input);
+    
    
-    currentState = "waiting for signal";
+    // TODO PART A: Set `currentState` to `waiting for signal`
     Workflow.await(() -> this.fulfilled);
 
     String activityResult = "";
@@ -40,7 +39,7 @@ public class QueryingWorkflowsWorkflowImpl implements QueryingWorkflowsWorkflow 
       logger.info("Signal workflow completed with result: {}", activityResult);
     }
 
-    currentState = "Workflow completed";
+    // TODO PART A: Set `currentState` to `Workflow completed`
 
     return activityResult;
   }
@@ -50,8 +49,7 @@ public class QueryingWorkflowsWorkflowImpl implements QueryingWorkflowsWorkflow 
     this.fulfilled = bool;
   }
 
-  @Override
-  public String queryState(){
-    return this.currentState;
-  }
+  // TODO PART A:   1. Implement the `queryState` method. This method should 
+  // read the instance variable `currentState` and return it.
+  
 }
