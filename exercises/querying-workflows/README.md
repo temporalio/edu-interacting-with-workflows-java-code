@@ -104,6 +104,29 @@ Query result:
 ["waiting for signal"]
 ```
 
-Now you can send a Signal to your Workflow as in the previous exercise so it completes successfully, or just terminate it.
+## Part E: Sending a Signal and Querying a Closed Workflow
+
+Now you can send a Signal to your Workflow as in the previous exercise so it
+completes successfully, then Query the closed Workflow.
+
+1. In the same terminal you sent the Query, send the Signal to the Workflow using
+   command `mvn exec:java -Dexec.mainClass='queryingworkflows.SignalClient'`.
+   1. Make sure you are in the correct directory by running `ex2`
+   1. If you're in the GitPod environment, you can instead run `ex2sg`
+   1. You won't see any output from the Signal, but you should see the result
+      of the Workflow in the terminal where the Workflow was started.
+      1. The Workflow has now completed and is now in a closed state. Closed
+         Workflows can also be queried.
+   1. Query the Workflows using the CLI command:
+   ```bash
+   temporal workflow query \
+    --workflow-id="query-workflow" \
+    --type="queryState"
+   ```
+   1. You should get the result
+   ```bash
+   Query result:
+   ["Workflow completed"]
+   ```
 
 ### This is the end of the exercise.
