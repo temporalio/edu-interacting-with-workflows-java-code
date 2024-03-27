@@ -19,5 +19,8 @@ alias ex3s="cd ${GITPOD_REPO_ROOT}/exercises/async-activity-completion/solution"
 alias ex3w="mvn exec:java -Dexec.mainClass='asyncactivitycompletion.AsyncActivityCompletionWorker'"
 alias ex3st="mvn exec:java -Dexec.mainClass='asyncactivitycompletion.Starter'"
 alias ex3sg="mvn exec:java -Dexec.mainClass='asyncactivitycompletion.SignalClient'"
+ex3c() {
+    mvn exec:java -Dexec.mainClass="asyncactivitycompletion.CompletionClient" -Dexec.args="${1}"
+}
 echo "Your workspace is located at: ${GITPOD_REPO_ROOT}"
 echo "Type the command     workspace      to return to the workspace directory at any time."

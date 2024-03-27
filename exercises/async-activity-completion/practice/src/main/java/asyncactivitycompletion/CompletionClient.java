@@ -19,11 +19,14 @@ public class CompletionClient {
     WorkflowClient client = WorkflowClient.newInstance(service);
     
     String result = "Asynchronously completed";
-    byte[] taskToken = Base64.getDecoder().decode(args[0]);
 
-    ActivityCompletionClient activityCompletionClient = client.newActivityCompletionClient();
+    // TODO Part C: Read in the token from the command line `args[0]` and decode
+    // the base 64, storing it in a `byte[]`. Hint, invert the call in `AsyncActivityCompletionActivitiesImpl.java`
     
-    activityCompletionClient.complete(taskToken, result);
+    ActivityCompletionClient activityCompletionClient = client.newActivityCompletionClient();
+
+    // TODO Part C: Use the `activityCompletionClient` object above to `complete()`
+    // the Activity, passing in the Task Token and the result.
     
     System.exit(0);
   }

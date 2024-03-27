@@ -23,19 +23,20 @@ public class AsyncActivityCompletionActivitiesImpl implements AsyncActivityCompl
   public String activity(String input) {
     logger.info("Activity received input: {}", input);
 
-    // Get the activity execution context
-    ActivityExecutionContext context = Activity.getExecutionContext();
 
-    // Set a correlation token that can be used to complete the activity asynchronously
-    byte[] taskToken = context.getTaskToken();
+    // TODO PART A:
+    // * Add the code to get the Activity execution context
+    // * Add the code to get the Task Token from the context
+    // * Uncomment the code to encode the Task Token in Base64
+    // * Log the task token at info level. Hint, you will need to convert the byte[] to a new String
 
-    byte[] encoded = Base64.getEncoder().encode(taskToken);
-    logger.info(new String(encoded));
+    //byte[] encoded = Base64.getEncoder().encode(taskToken);
+    
 
-    context.doNotCompleteOnReturn();
+    // TODO Part B:  Add a call to the `doNotCompleteOnReturn();` method using 
+    //the `context` object from Part A. This notifies Temporal that the Activity
+    //should not be completed on return and will be completed asynchronously.
 
-    // Since we have set doNotCompleteOnReturn(), the workflow action method return value is
-    // ignored.
     return "This return value will be ignored.";
   }
 
