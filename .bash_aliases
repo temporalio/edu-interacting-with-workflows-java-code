@@ -3,9 +3,9 @@ alias webui="gp preview $(gp url 8080)"
 
 alias ex1="cd ${GITPOD_REPO_ROOT}/exercises/sendings-signals/practice"
 alias ex1s="cd ${GITPOD_REPO_ROOT}/exercises/sendings-signals/solution"
-alias ex1w="mvn exec:java -Dexec.mainClass='sendingsignals.SendingSignalsWorker'"
-alias ex1st="mvn exec:java -Dexec.mainClass='sendingsignals.Starter'"
-alias ex1sg="mvn exec:java -Dexec.mainClass='sendingsignals.SignalClient'"
+alias ex1w="mvn exec:java -Dexec.mainClass='sendingsignalsexternal.SendSignalExternalWorker'"
+alias ex1st="mvn exec:java -Dexec.mainClass='sendingsignalsexternal.Starter'"
+
 
 alias ex2="cd ${GITPOD_REPO_ROOT}/exercises/querying-workflows/practice"
 alias ex2s="cd ${GITPOD_REPO_ROOT}/exercises/querying-workflows/solution"
