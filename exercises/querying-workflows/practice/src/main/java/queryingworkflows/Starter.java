@@ -1,6 +1,4 @@
-package asyncactivitycompletion;
-
-import java.util.concurrent.CompletableFuture;
+package queryingworkflows;
 
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
@@ -15,15 +13,15 @@ public class Starter {
     WorkflowClient client = WorkflowClient.newInstance(service);
 
     WorkflowOptions options = WorkflowOptions.newBuilder()
-        .setWorkflowId("async-complete-workflow")
-        .setTaskQueue("async-complete")
+        .setWorkflowId("query-workflow")
+        .setTaskQueue("signals")
         .build();
 
-    AsyncActivityCompletionWorkflow workflow = client.newWorkflowStub(AsyncActivityCompletionWorkflow.class, options);
+    QueryingWorkflowsWorkflow workflow = client.newWorkflowStub(QueryingWorkflowsWorkflow.class, options);
 
-    CompletableFuture<String> result = WorkflowClient.execute(workflow::workflow, "Plain text input");
+    String result = workflow.workflow("Plain text input");
 
-    System.out.printf("Workflow result: %s\n", result.get());
+    System.out.printf("Workflow result: %s\n", result);
     System.exit(0);
   }
 }

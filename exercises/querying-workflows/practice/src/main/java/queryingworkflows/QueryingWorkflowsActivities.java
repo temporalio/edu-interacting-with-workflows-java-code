@@ -1,9 +1,9 @@
-package asyncactivitycompletion;
+package queryingworkflows;
 
 import io.temporal.activity.ActivityInterface;
 
 @ActivityInterface
-public interface AsyncActivityCompletionActivities {
+public interface QueryingWorkflowsActivities {
 
   String activity(String input);
 
