@@ -2,6 +2,7 @@ package queryingworkflows;
 
 import io.temporal.client.WorkflowClient;
 import io.temporal.serviceclient.WorkflowServiceStubs;
+import queryingworkflows.orderpizza.PizzaWorkflow;
 
 
 public class QueryClient {
@@ -11,11 +12,10 @@ public class QueryClient {
 
     WorkflowClient client = WorkflowClient.newInstance(service);
 
-    QueryingWorkflowsWorkflow workflow = client.newWorkflowStub(QueryingWorkflowsWorkflow.class, "query-workflow");
+    PizzaWorkflow workflow = client.newWorkflowStub(PizzaWorkflow.class, "pizza-workflow-order-XD001");
 
-    // TODO PART B: Call the `queryState` method using the `workflow` object and
-    // print the result
-    
+    // TODO: PART B: Perform the query using the `orderStatus()` method. Print out the results
+
     System.exit(0);
   }
 }

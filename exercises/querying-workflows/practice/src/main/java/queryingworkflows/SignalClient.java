@@ -2,6 +2,7 @@ package queryingworkflows;
 
 import io.temporal.client.WorkflowClient;
 import io.temporal.serviceclient.WorkflowServiceStubs;
+import queryingworkflows.orderpizza.PizzaWorkflow;
 
 
 public class SignalClient {
@@ -11,10 +12,10 @@ public class SignalClient {
 
     WorkflowClient client = WorkflowClient.newInstance(service);
 
-    QueryingWorkflowsWorkflow workflow = client.newWorkflowStub(QueryingWorkflowsWorkflow.class, "query-workflow");
+    PizzaWorkflow workflow = client.newWorkflowStub(PizzaWorkflow.class, "pizza-workflow-order-XD001");
 
     workflow.fulfillOrderSignal(true);
-    
+
     System.exit(0);
   }
 }
