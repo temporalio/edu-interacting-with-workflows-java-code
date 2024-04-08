@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.temporal.learn</groupId>
-    <artifactId>async-activity-completion</artifactId>
+    <artifactId>translation-microservice</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>async activity completion</name>
+    <name>translation-microservice</name>
     <url>https://learn.temporal.io/</url>
 
     <properties>
@@ -19,17 +19,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>io.temporal</groupId>
-            <artifactId>temporal-sdk</artifactId>
-            <version>1.20.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.8</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -38,26 +27,10 @@
         </dependency>
 
         <dependency>
-            <groupId>io.temporal</groupId>
-            <artifactId>temporal-testing</artifactId>
-            <version>1.20.1</version>
-            <scope>test</scope>
-        </dependency>  
-
- 
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.5.2</version>
-            <scope>test</scope>
+            <groupId>org.rapidoid</groupId>
+            <artifactId>rapidoid-quick</artifactId>
+            <version>5.5.5</version>
         </dependency>
-    
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.3.1</version>
-            <scope>test</scope>
-        </dependency>  
   
     </dependencies>
 

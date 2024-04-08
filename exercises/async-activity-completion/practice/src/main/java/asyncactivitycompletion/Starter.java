@@ -1,11 +1,10 @@
 package asyncactivitycompletion;
 
-import java.util.concurrent.CompletableFuture;
-
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
-
+import asyncactivitycompletion.model.TranslationWorkflowInput;
+import asyncactivitycompletion.model.TranslationWorkflowOutput;
 
 public class Starter {
   public static void main(String[] args) throws Exception {
@@ -15,15 +14,20 @@ public class Starter {
     WorkflowClient client = WorkflowClient.newInstance(service);
 
     WorkflowOptions options = WorkflowOptions.newBuilder()
-        .setWorkflowId("async-complete-workflow")
-        .setTaskQueue("async-complete")
+        .setWorkflowId("translation-workflow")
+        .setTaskQueue("translation-tasks")
         .build();
 
-    AsyncActivityCompletionWorkflow workflow = client.newWorkflowStub(AsyncActivityCompletionWorkflow.class, options);
+    TranslationWorkflow workflow = client.newWorkflowStub(TranslationWorkflow.class, options);
 
-    CompletableFuture<String> result = WorkflowClient.execute(workflow::workflow, "Plain text input");
+    String name = args[0];
+    String languageCode = args[1];
 
-    System.out.printf("Workflow result: %s\n", result.get());
+    TranslationWorkflowInput input = new TranslationWorkflowInput(name, languageCode);
+
+    TranslationWorkflowOutput greeting = workflow.sayHelloGoodbye(input);
+
+    System.out.printf("Workflow result: %s\n", greeting);
     System.exit(0);
   }
 }

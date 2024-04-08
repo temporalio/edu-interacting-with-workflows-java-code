@@ -2,22 +2,21 @@ package asyncactivitycompletion;
 
 import io.temporal.client.WorkflowClient;
 import io.temporal.serviceclient.WorkflowServiceStubs;
-import io.temporal.client.ActivityCompletionClient;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 
-public class AsyncActivityCompletionWorker {
+public class TranslationWorker {
   public static void main(String[] args) {
 
     WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
     WorkflowClient client = WorkflowClient.newInstance(service);
     WorkerFactory factory = WorkerFactory.newInstance(client);
 
-    Worker worker = factory.newWorker("async-complete");
+    Worker worker = factory.newWorker("translation-tasks");
 
-    worker.registerWorkflowImplementationTypes(AsyncActivityCompletionWorkflowImpl.class);
+    worker.registerWorkflowImplementationTypes(TranslationWorkflowImpl.class);
 
-    worker.registerActivitiesImplementations(new AsyncActivityCompletionActivitiesImpl());
+    worker.registerActivitiesImplementations(new TranslationActivitiesImpl());
 
     factory.start();
   }

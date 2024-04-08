@@ -8,25 +8,28 @@ import io.temporal.client.WorkflowClient;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.client.ActivityCompletionClient;
 
+import asyncactivitycompletion.model.TranslationActivityOutput;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class CompletionClient {
+public class VerifyAndCompleteTranslation {
   public static void main(String[] args) throws ExecutionException, InterruptedException {
 
     WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
 
     WorkflowClient client = WorkflowClient.newInstance(service);
     
-    String result = "Asynchronously completed";
-
-    // TODO Part C: Read in the token from the command line `args[0]` and decode
-    // the base 64, storing it in a `byte[]`. Hint, invert the call in `AsyncActivityCompletionActivitiesImpl.java`
     
-    ActivityCompletionClient activityCompletionClient = client.newActivityCompletionClient();
+    byte[] taskToken = Base64.getDecoder().decode(args[0]);
 
-    // TODO Part C: Use the `activityCompletionClient` object above to `complete()`
-    // the Activity, passing in the Task Token and the result.
+    // Pass in the translated text as a command line argument and pretend to "verify"
+    // the results
+    String result = args[1];
+
+    ActivityCompletionClient activityCompletionClient = client.newActivityCompletionClient();
+    
+    activityCompletionClient.complete(taskToken, new TranslationActivityOutput(result));
     
     System.exit(0);
   }
