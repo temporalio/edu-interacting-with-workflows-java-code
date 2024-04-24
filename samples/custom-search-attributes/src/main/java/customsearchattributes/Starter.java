@@ -12,6 +12,8 @@ import customsearchattributes.model.Address;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Starter {
   public static void main(String[] args) throws Exception {
@@ -27,6 +29,7 @@ public class Starter {
     WorkflowOptions options = WorkflowOptions.newBuilder()
         .setWorkflowId(workflowID)
         .setTaskQueue(Constants.TASK_QUEUE_NAME)
+        .setSearchAttributes(generateSearchAttributes())
         .build();
 
     PizzaWorkflow workflow = client.newWorkflowStub(PizzaWorkflow.class, options);
@@ -50,5 +53,13 @@ public class Starter {
     PizzaOrder order = new PizzaOrder("XD001", customer, orderList, true, address);
 
     return order;
+  }
+
+  private static Map<String, Object> generateSearchAttributes(){
+    Map<String, Object> searchAttributes = new HashMap<>();
+
+    searchAttributes.put("isOrderFailed", false);
+
+    return searchAttributes;
   }
 }
