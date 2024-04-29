@@ -26,7 +26,7 @@ the code.
 | `ex1st` | Execute the Exercise 1 Starter. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)    |
 | `ex1sg` | Send the Exercise 1 StarSignalter. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`) |
 
-## Part A: Defining a Signal
+## Part A: Defining a Signal handler
 
 In this part of the exercise, you will define your Signal.
 
