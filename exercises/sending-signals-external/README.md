@@ -4,7 +4,7 @@ During this exercise, you will:
 
 - Define and implement a Signal handler
 - Retrieve a handle on the Workflow to Signal
-- Send an external Signal
+- Send an external Signal from another workflow
 - Use a Temporal Client to submit execution requests for both Workflows
 
 Make your changes to the code in the `practice` subdirectory (look for
