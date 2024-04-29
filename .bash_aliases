@@ -12,6 +12,7 @@ alias ex2s="cd ${GITPOD_REPO_ROOT}/exercises/querying-workflows/solution"
 alias ex2w="mvn exec:java -Dexec.mainClass='queryingworkflows.QueryingWorkflowsWorker'"
 alias ex2st="mvn exec:java -Dexec.mainClass='queryingworkflows.Starter'"
 alias ex2sg="mvn exec:java -Dexec.mainClass='queryingworkflows.SignalClient'"
+alias ex2q="mvn exec:java -Dexec.mainClass='queryingworkflows.QueryClient'"
 
 
 alias ex3="cd ${GITPOD_REPO_ROOT}/exercises/async-activity-completion/practice"
