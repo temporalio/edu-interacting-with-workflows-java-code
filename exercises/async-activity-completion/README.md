@@ -37,8 +37,13 @@ the code.
    1. Add a call to the `doNotCompleteOnReturn();` method at the end of the `translateTerm()` method using the `context` object from Part A. This notifies Temporal that the Activity should not be completed on return and will be completed asynchronously.
    1. Save the file.
 1. Open the `TranslationWorkflowImpl.java` file in the `src/main/java/asyncactivitycompletion` subdirectory.
-   1. Observe that the Workflow's `StartToCloseTimeout` has been lengthened to 300 seconds for this exercise. Activities can still time out if they are running in the background.
+   1. Observe that the Workflow's `StartToCloseTimeout` has been lengthened to `300` seconds for this exercise. Activities can still time out if they are running in the background.
+      1. If you don't do this and your Activity retries due to a timeout, the Task Token will be reset.
    1. Close this file without making any changes.
+
+**Note:** In practice, it is recommended to use Heartbeats for longer running 
+Activities. While this exercise doesn't include them, it is a good idea to
+include them in Activities that will complete Asynchronously.
 
 ## Part C: Configure a Client to send CompleteActivity
 
