@@ -32,16 +32,16 @@ In this part of the exercise, you will define your Query.
 
 1. Open the `PizzaWorkflow.java` file in the `practice/src/main/java/queryingworkflows` subdirectory
    1. Define the Query method `orderStatus` in the interface. Annotate the method with `@QueryMethod`. It should return a String representing the current status of the order and take no parameters.
-   1. Save the file.
+   2. Save the file.
 1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/queryingworkflows` subdirectory.
    1. Implement the `orderStatus` method
       1. This method should read the instance variable `status` and return it
-   1. Set the value of `status` at specific points in the Workflow:
+   2. Set the value of `status` at specific points in the Workflow:
       1. Set the value of `status` to `Started` as the first line in the Workflow
       1. Set the value of `status` to `Out for delivery` right above the call to await the Signal
       1. Set the value of `status` to `Order complete` as the last line in the `try` block where the `sendBill()` Activity was invoked
       1. **Note**: You can set the value of status anywhere for whichever states you would like to report on. Feel free with experimenting and adding more statuses
-   1. Save the file.
+   3. Save the file.
 
 ## Part B: Performing a Query from a Client
 
@@ -50,8 +50,8 @@ a Query.
 
 1. Open the `QueryClient.java` file in the `practice/src/main/java/queryingworkflows` subdirectory.
    1. Call the `orderStatus()` method using the `workflow` object.
-   1. Print the result of the call to standard out.
-   1. Save the file.
+   2. Print the result of the call to standard out.
+   3. Save the file.
 
 ## Part C: Running the Workflow and the Query
 
@@ -59,18 +59,19 @@ At this point, you can run your Workflow. Because it is the same Workflow from t
 
 1. Navigate to the Exercise 3 practice directory in the terminal
    1. If you're in the GitPod environment you can instead run `ex3`
-   1. Otherwise, use:
+   2. Otherwise, use:
    ```bash
    cd exercises/querying-workflows/practice/src
    ```
-   1. _Be sure to do this for **every** terminal_
-1. Compile the code using `mvn clean compile`
-1. In a terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.QueryingWorkflowsWorker'` to start the Worker.
+   3. _Be sure to do this for **every** terminal_
+2. Compile the code using `mvn clean compile`
+3. In a terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.QueryingWorkflowsWorker'` to start the Worker.
    1. Make sure you are in the correct directory by running `ex3`
-   1. If you're in the GitPod environment, you can instead run `ex3w`
-1. In another terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.Starter'` to start the Workflow.
+   2. If you're in the GitPod environment, you can instead run `ex3w`
+4. In another terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.Starter'` to start the Workflow.
+
    1. If you're in the GitPod environment, you can run `ex2st`
-   1. You should receive some logging from your Worker along these lines:
+   2. You should receive some logging from your Worker along these lines:
 
    ```bash
    10:15:51.081 INFO  - Created WorkflowServiceStubs for channel: ManagedChannelOrphanWrapper{delegate=ManagedChannelImpl{logId=1, target=127.0.0.1:7233}}
@@ -78,10 +79,10 @@ At this point, you can run your Workflow. Because it is the same Workflow from t
    10:15:51.349 INFO  - start: Poller{name=Activity Poller taskQueue="pizza-tasks", namespace="default", identity=63174@Masons-Laptop}
    ```
 
-1. You can now Query your Workflow. In a third terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.QueryClient'` to send the Query
+5. You can now Query your Workflow. In a third terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.QueryClient'` to send the Query
    1. Make sure you are in the correct directory by running `ex3`
-   1. If you're in the GitPod environment, you can instead run `ex3q`
-   1. You'll receive a result
+   2. If you're in the GitPod environment, you can instead run `ex3q`
+   3. You'll receive a result
    ```bash
    Out for delivery
    ```
@@ -100,7 +101,7 @@ It will produce the same result:
 
 ```
 Query result:
-["waiting for signal"]
+["Out for delivery"]
 ```
 
 ## Part E: Sending a Signal and Querying a Closed Workflow
@@ -111,18 +112,21 @@ completes successfully, then Query the closed Workflow.
 1. In the same terminal you sent the Query, send the Signal to the Workflow using
    command `mvn exec:java -Dexec.mainClass='queryingworkflows.SignalClient'`.
    1. Make sure you are in the correct directory by running `ex3`
-   1. If you're in the GitPod environment, you can instead run `ex3sg`
-   1. You won't see any output from the Signal, but you should see the result
+   2. If you're in the GitPod environment, you can instead run `ex3sg`
+   3. You won't see any output from the Signal, but you should see the result
       of the Workflow in the terminal where the Workflow was started.
       1. The Workflow has now completed and is now in a closed state. Closed
          Workflows can also be queried.
-   1. Query the Workflows using the CLI command:
+         1. If you send the Signal and Query quickly enough, you may Query the Workflows
+            before the Workflow has closed. While that's unlikely in this case, keep
+            this in mind for your future implementations.
+   4. Query the Workflows using the CLI command:
    ```bash
    temporal workflow query \
     --workflow-id="pizza-workflow-order-XD001" \
     --type="orderStatus"
    ```
-   1. You should get the result
+   5. You should get the result
    ```bash
    Query result:
    ["Order complete"]
