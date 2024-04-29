@@ -2,7 +2,7 @@
 
 During this exercise, you will:
 
-- Define and handle a Signal
+- Define and implement a Signal handler
 - Retrieve a handle on the Workflow to Signal
 - Send an external Signal
 - Use a Temporal Client to submit execution requests for both Workflows
