@@ -19,7 +19,7 @@ the code.
 | `ex4`             | Change to Exercise 3 Practice Directory                                                                                                                      |
 | `ex4s`            | Change to Exercise 3 Solution Directory                                                                                                                      |
 | `ex4w`            | Execute the Exercise 3 Worker. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)                               |
-| `ex4st`           | Execute the Exercise 3 Starter. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)                              |
+| `ex4st NAME LANGUAGE_CODE`           | Execute the Exercise 3 Starter, passing in your name and a valid lanuage code. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)                              |
 | `ex4c TASK_TOKEN TRANSLATION` | Complete the Exercise 3 Activity, passing in the Task Token and verified translation. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`) |
 
 ## Part A: Retrieving the Task Token
@@ -70,7 +70,7 @@ At this point, you can run your Workflow. As with the Signal Exercise, the Workf
       If you're in the GitPod environment you can instead run `ex4st Mason de`, replacing the name with yours
 1. Navigate back to the Worker terminal. Your work will produce some logging, eventually including your `taskToken`:
 
-```
+```bash
 10:28:40.579 INFO  - sayHelloGoodbye Workflow Invoked with input name: Mason language code: de
 10:28:40.614 INFO  - translateTerm Activity received input: asyncactivitycompletion.model.TranslationActivityInput@394250e6
 10:28:40.614 INFO  - TASK TOKEN: CiQ1NzVkNTNlYi1lM2UyLTRmNmEtODFjMy04ZmY0NmJiYjJjOWYSFHRyYW5zbGF0aW9uLXdvcmtmbG93GiQ0OWQ5NjgyOC1iYmJkLTQ5MjMtOTE4Mi00MWY2YmFlNjI4YzEgBSgBMiRlNGJmZmJhMC1jNGJhLTM1MDgtYThkYS01MjgwYjNjMzVkZmJCDVRyYW5zbGF0ZVRlcm1KCAgBEJuAQBgB
@@ -80,7 +80,7 @@ At this point, you can run your Workflow. As with the Signal Exercise, the Workf
 
 1. You can now use this token to send a `complete()` call from another client. In another terminal, navigate to the `practice` subdirectory
    1. If you're in the GitPod environment you can instead run `ex4`
-   1. Run the command `mvn exec:java -Dexec.mainClass='asyncactivitycompletion.VerifyAndCompleteTranslatin' -Dexec.args="TASK_TOKEN TRANSLATION"` with your Task Token replacing `TASK_TOKEN` with your Task Token to complete the Activity and replacing `TRANSLATION` with the results from the translation service
+   1. Run the command `mvn exec:java -Dexec.mainClass='asyncactivitycompletion.VerifyAndCompleteTranslation' -Dexec.args="TASK_TOKEN TRANSLATION"` with your Task Token replacing `TASK_TOKEN` with your Task Token to complete the Activity and replacing `TRANSLATION` with the results from the translation service
       1. If you're in the GitPod environment you can instead run `ex4c TASK_TOKEN TRANSLATION` replacing `TASK_TOKEN` with your Task Token to complete the Activity and replacing `TRANSLATION` with the results from the translation service
    1. This will cause your Activity to return and your Workflow to successfully complete. The terminal running your Worker process should now show
    ```

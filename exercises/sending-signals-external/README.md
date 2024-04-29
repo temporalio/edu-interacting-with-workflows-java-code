@@ -24,7 +24,6 @@ the code.
 | `ex1s`  | Change to Exercise 1 Solution Directory                                                                                            |
 | `ex1w`  | Execute the Exercise 1 Worker. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)     |
 | `ex1st` | Execute the Exercise 1 Starter. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)    |
-| `ex1sg` | Send the Exercise 1 StarSignalter. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`) |
 
 ## Part A: Defining a Signal handler
 
@@ -98,7 +97,7 @@ At this point, you can start the Worker that registers your Workflows and Activi
 
 ## Part F: Run Both Workflows
 
-Now it is time to start the Workflows. In `Starter.java` you'll see that we start both Workflows, one right after the other. This is done Asynchronously so the PizzaOrderWorkflow doesn't block, waiting on the Signal from the FullfillOrderWorkflow. 
+Now it is time to start the Workflows. In `Starter.java` you'll see that we start both Workflows, one right after the other. This is done Asynchronously so the PizzaOrderWorkflow doesn't block, waiting on the Signal from the FulfillOrderWorkflow. 
 
 ```java
 CompletableFuture<OrderConfirmation> orderConfirmation = WorkflowClient.execute(pizzaWorkflow::orderPizza, order);
@@ -115,19 +114,19 @@ To start both Workflows, run the following commands _once_:
    1. If you're in the GitPod environment, you can run `ex1st`
    1. You should receive some logging from your Worker along these lines when the Workflow has finished:
    ```bash
-  13:39:44.222 INFO  - orderPizza Workflow Invoked
-  13:39:44.257 INFO  - getDistance invoked; determining distance to customer address
-  13:39:44.257 INFO  - getDistance complete: 25
-  13:39:44.257 INFO  - Starting to make pizzas for order XD001
-  13:39:44.257 INFO  - Making pizza: Large, with mushrooms and onions
-  13:39:44.257 INFO  - Making pizza: Small, with pepperoni
-  13:39:44.257 INFO  - Making pizza: Medium, with extra cheese
-  13:39:44.257 INFO  - All pizzas for order XD001 are ready!
-  13:39:44.265 INFO  - distance is 25
-  13:39:44.268 INFO  - Starting delivery XD001 to 742 Evergreen Terrace Apartment 221B Albuquerque NM 87101
-  13:39:44.282 INFO  - sendBill invoked: customer: 8675309 amount: 4000
-  13:39:44.282 INFO  - Applying discount
-  13:39:44.286 INFO  - Bill sent to customer 8675309
+      13:39:44.222 INFO  - orderPizza Workflow Invoked
+      13:39:44.257 INFO  - getDistance invoked; determining distance to customer address
+      13:39:44.257 INFO  - getDistance complete: 25
+      13:39:44.257 INFO  - Starting to make pizzas for order XD001
+      13:39:44.257 INFO  - Making pizza: Large, with mushrooms and onions
+      13:39:44.257 INFO  - Making pizza: Small, with pepperoni
+      13:39:44.257 INFO  - Making pizza: Medium, with extra cheese
+      13:39:44.257 INFO  - All pizzas for order XD001 are ready!
+      13:39:44.265 INFO  - distance is 25
+      13:39:44.268 INFO  - Starting delivery XD001 to 742 Evergreen Terrace Apartment 221B Albuquerque NM 87101
+      13:39:44.282 INFO  - sendBill invoked: customer: 8675309 amount: 4000
+      13:39:44.282 INFO  - Applying discount
+      13:39:44.286 INFO  - Bill sent to customer 8675309
    ```
 
 ### This is the end of the exercise.
