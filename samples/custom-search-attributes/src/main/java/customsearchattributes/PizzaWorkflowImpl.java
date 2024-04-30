@@ -3,6 +3,7 @@ package customsearchattributes;
 import io.temporal.activity.ActivityOptions;
 import io.temporal.workflow.Workflow;
 import io.temporal.failure.ApplicationFailure;
+import io.temporal.common.SearchAttributeKey;
 
 import customsearchattributes.model.Address;
 import customsearchattributes.model.Bill;
@@ -40,11 +41,7 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
     boolean isDelivery = order.isDelivery();
     Address address = order.getAddress();
 
-    Map<String, Object> failed = new HashMap<>();
-    failed.put("isOrderFailed", true);
-
-    Map<String, Object> success = new HashMap<>();
-    success.put("isOrderFailed", false);
+    final SearchAttributeKey<Boolean> IS_ORDER_FAILED = SearchAttributeKey.forBoolean("isOrderFailed");
 
     logger.info("orderPizza Workflow Invoked");
 
@@ -59,14 +56,14 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
     } catch (NullPointerException e) {
       logger.error("Unable to get distance");
 
-      Workflow.upsertSearchAttributes(failed);
+      Workflow.upsertTypedSearchAttributes(IS_ORDER_FAILED.valueSet(true));
 
       throw new NullPointerException("Unable to get distance");
     }
 
     if (isDelivery && (distance.getKilometers() > 25)) {
       logger.error("Customer lives outside the service area");
-      Workflow.upsertSearchAttributes(failed);
+      Workflow.upsertTypedSearchAttributes(IS_ORDER_FAILED.valueSet(true));
       throw ApplicationFailure.newFailure("Customer lives outside the service area",
           OutOfServiceAreaException.class.getName());
     }
@@ -84,11 +81,11 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
       confirmation = activities.sendBill(bill);
     } catch (InvalidChargeAmountException e) {
       logger.error("Unable to bill customer");
-      Workflow.upsertSearchAttributes(failed);
+      Workflow.upsertTypedSearchAttributes(IS_ORDER_FAILED.valueSet(true));
       throw Workflow.wrap(new InvalidChargeAmountException("Unable to bill customer"));
     }
 
-    Workflow.upsertSearchAttributes(success);
+    Workflow.upsertTypedSearchAttributes(IS_ORDER_FAILED.valueSet(false));
     return confirmation;
   }
 }
