@@ -24,8 +24,7 @@ Within the Pizza Workflow code, we will now dynamically update Search Attributes
 ## Part D: Running Your Workflow
 
 1. In one terminal, run `mvn exec:java -Dexec.mainClass='customsearchattributes.PizzaWorker` to start the Worker.
-1. In another terminal and run `mvn exec:java -Dexec.mainClass='customsearchattributes.Starter'` to initiate execution of the Workflow. Now, try your query to retrieve the results. If you don't immediately see the correct result, wait a few seconds
-and try again. Recall that it is possible to send a query before the updated Search Attribute has been recorded.
+2. In another terminal and run `mvn exec:java -Dexec.mainClass='customsearchattributes.Starter'` to initiate execution of the Workflow. Now, try your query to retrieve the results. Recall that visibility is eventually consistent, so not all updates are going to be immediately reflected. If you don't see your update, wait a bit an try again. 
 
 ## Part E: Querying Workflows by Search Attributes
 

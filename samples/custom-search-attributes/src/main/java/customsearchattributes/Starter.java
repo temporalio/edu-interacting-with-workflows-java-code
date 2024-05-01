@@ -3,6 +3,7 @@ package customsearchattributes;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
+import io.temporal.common.SearchAttributes;
 
 import customsearchattributes.model.PizzaOrder;
 import customsearchattributes.model.Pizza;
@@ -29,7 +30,7 @@ public class Starter {
     WorkflowOptions options = WorkflowOptions.newBuilder()
         .setWorkflowId(workflowID)
         .setTaskQueue(Constants.TASK_QUEUE_NAME)
-        .setSearchAttributes(generateSearchAttributes())
+        .setTypedSearchAttributes(generateSearchAttributes())
         .build();
 
     PizzaWorkflow workflow = client.newWorkflowStub(PizzaWorkflow.class, options);
@@ -55,11 +56,7 @@ public class Starter {
     return order;
   }
 
-  private static Map<String, Object> generateSearchAttributes(){
-    Map<String, Object> searchAttributes = new HashMap<>();
-
-    searchAttributes.put("isOrderFailed", false);
-
-    return searchAttributes;
+  private static SearchAttributes generateSearchAttributes(){
+    return SearchAttributes.newBuilder().set(Constants.IS_ORDER_FAILED, false).build();
   }
 }

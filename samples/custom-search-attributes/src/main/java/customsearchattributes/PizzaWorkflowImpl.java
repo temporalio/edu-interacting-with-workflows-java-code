@@ -16,9 +16,7 @@ import customsearchattributes.exceptions.InvalidChargeAmountException;
 import customsearchattributes.exceptions.OutOfServiceAreaException;
 
 import java.time.Duration;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 
@@ -41,7 +39,7 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
     boolean isDelivery = order.isDelivery();
     Address address = order.getAddress();
 
-    final SearchAttributeKey<Boolean> IS_ORDER_FAILED = SearchAttributeKey.forBoolean("isOrderFailed");
+    
 
     logger.info("orderPizza Workflow Invoked");
 
@@ -56,14 +54,14 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
     } catch (NullPointerException e) {
       logger.error("Unable to get distance");
 
-      Workflow.upsertTypedSearchAttributes(IS_ORDER_FAILED.valueSet(true));
+      Workflow.upsertTypedSearchAttributes(Constants.IS_ORDER_FAILED.valueSet(true));
 
       throw new NullPointerException("Unable to get distance");
     }
 
     if (isDelivery && (distance.getKilometers() > 25)) {
       logger.error("Customer lives outside the service area");
-      Workflow.upsertTypedSearchAttributes(IS_ORDER_FAILED.valueSet(true));
+      Workflow.upsertTypedSearchAttributes(Constants.IS_ORDER_FAILED.valueSet(true));
       throw ApplicationFailure.newFailure("Customer lives outside the service area",
           OutOfServiceAreaException.class.getName());
     }
@@ -81,11 +79,11 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
       confirmation = activities.sendBill(bill);
     } catch (InvalidChargeAmountException e) {
       logger.error("Unable to bill customer");
-      Workflow.upsertTypedSearchAttributes(IS_ORDER_FAILED.valueSet(true));
+      Workflow.upsertTypedSearchAttributes(Constants.IS_ORDER_FAILED.valueSet(true));
       throw Workflow.wrap(new InvalidChargeAmountException("Unable to bill customer"));
     }
 
-    Workflow.upsertTypedSearchAttributes(IS_ORDER_FAILED.valueSet(false));
+    Workflow.upsertTypedSearchAttributes(Constants.IS_ORDER_FAILED.valueSet(false));
     return confirmation;
   }
 }
