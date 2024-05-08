@@ -1,4 +1,4 @@
-# Exercise #2: Querying Workflows
+## Exercise #3: Querying Workflows
 
 During this exercise, you will:
 
@@ -94,7 +94,7 @@ To send a Query from the CLI, use `temporal workflow query` with the same parame
 ```bash
 temporal workflow query \
     --workflow-id="pizza-workflow-order-XD001" \
-    --type="queryState"
+    --type="orderStatus"
 ```
 
 It will produce the same result:

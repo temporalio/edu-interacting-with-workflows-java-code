@@ -50,7 +50,8 @@ To run the Workflow:
 
 1. In all terminals, change directories to the Exercise 2 directory `sending-signals-external`.
    1. If you're in the GitPod environment, you can run `ex2`.
-1. In one terminal, start the Worker by running `mvn exec:java -Dexec.mainClass="sendingsignalsclient.SendSignalClientWorker"`.
+1. In one terminal, compile the code using `mvn clean compile`.
+1. In the same terminal, start the Worker by running `mvn exec:java -Dexec.mainClass="sendingsignalsclient.SendSignalClientWorker"`.
    1. If you're in the GitPod environment, you can instead run `ex2w` to start the worker
 1. In another terminal, start the Workflow by running `mvn exec:java -Dexec.mainClass="sendingsignalsclient.Starter"`. This will start the Workflow, which you will see waiting for a Signal.
    1. If you're in the GitPod environment, you can instead run `ex2st` to start the Workflow
