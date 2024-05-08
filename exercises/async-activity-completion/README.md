@@ -1,4 +1,4 @@
-# Exercise 4: Asynchronous Activity Completion
+## Exercise 4: Asynchronous Activity Completion
 
 During this exercise, you will:
 

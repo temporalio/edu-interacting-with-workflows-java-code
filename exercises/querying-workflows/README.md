@@ -1,4 +1,4 @@
-# Exercise #2: Querying Workflows
+## Exercise #3: Querying Workflows
 
 During this exercise, you will:
 

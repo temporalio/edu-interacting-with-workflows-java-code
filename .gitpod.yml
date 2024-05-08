@@ -39,11 +39,11 @@ tasks:
       clear
       echo "Use this terminal to run commands.."
     openMode: split-right
-  - name: Codecserver
+  - name: Signal Terminal
     command: |
       source /workspace/edu-interacting-with-workflows-java-code/.bash.cfg
       clear
-      echo "Use this terminal to run your codec server.."
+      echo "Use this terminal to send additional signals.."
     openMode: split-right
 
 ports:
