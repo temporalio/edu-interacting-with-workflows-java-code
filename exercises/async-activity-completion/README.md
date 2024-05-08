@@ -62,7 +62,7 @@ At this point, you can run your Workflow. As with the Signal Exercise, the Workf
 1. In one terminal, navigate to the `practice` subdirectory
    1. If you're in the GitPod environment you can instead run `ex4`
    1. Compile the code using `mvn clean compile`
-   1. Run the worker using `mvn exec:java -Dexec.mainClas='asyncactivitycompletion.TranslationWorker'`.
+   1. Run the worker using `mvn exec:java -Dexec.mainClass='asyncactivitycompletion.TranslationWorker'`.
       1. If you're in the GitPod environment you can instead run `ex4w`
 1. In another terminal, navigate to the `practice` subdirectory
    1. If you're in the GitPod environment you can instead run `ex4`
