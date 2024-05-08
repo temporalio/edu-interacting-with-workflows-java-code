@@ -30,7 +30,7 @@ tasks:
       # completion of the task above that links this elsewhere (the
       # Docker image expects it in the same location for every course, 
       # but this .gitpod.yml file can use course-specific paths)
-      source /workspace/edu-appdatasec-java-code/.bash.cfg
+      source /workspace/edu-interacting-with-workflows-java-code/.bash.cfg
       clear
       echo "Use this terminal to start your Worker."
   - name: Terminal
