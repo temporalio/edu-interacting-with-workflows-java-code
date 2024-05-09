@@ -79,7 +79,7 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
       } catch (InvalidChargeAmountException e) {
         status = "Unable to bill customer";
         logger.error("Unable to bill customer");
-        throw Workflow.wrap(new InvalidChargeAmountException("Unable to bill customer"));
+        throw Workflow.wrap(e);
       }
     } else {
       confirmation = null;
