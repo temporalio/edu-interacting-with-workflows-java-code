@@ -75,7 +75,7 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
       confirmation = activities.sendBill(bill);
     } catch (InvalidChargeAmountException e) {
       logger.error("Unable to bill customer");
-      throw Workflow.wrap(new InvalidChargeAmountException("Unable to bill customer"));
+      throw Workflow.wrap(e);
     }
 
     return confirmation;
