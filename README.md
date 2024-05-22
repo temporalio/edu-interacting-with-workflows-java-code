@@ -1,7 +1,7 @@
 # Code Repository for Interacting with Workflows (Java)
 
 This repository provides code used for exercises and demonstrations
-included in the Go version of the
+included in the Java version of the
 [Interacting with Workflows](https://learn.temporal.io/courses/interacting-with-workflows)
 training course.
 
