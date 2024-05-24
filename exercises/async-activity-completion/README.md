@@ -8,6 +8,15 @@ During this exercise, you will:
 
 Make your changes to the code in the `practice` subdirectory (look for `TODO` comments that will guide you to where you should make changes to the code). If you need a hint or want to verify your changes, look at the complete version in the `solution` subdirectory.
 
+### Prerequisites
+This exercises uses the microservice from Temporal 102. If you are in the GitPod environment, this microservice is
+already running. If you are _not_ using GitPod, you can start the microservice from a separate terminal by changing to
+the `utilities/microservice` directory and using the following command:
+
+```bash
+mvn exec:java -Dexec.mainClass="translationapi.Microservice"
+```
+
 ### GitPod Environment Shortcuts
 
 If you are executing the exercises in the provided GitPod environment, you
