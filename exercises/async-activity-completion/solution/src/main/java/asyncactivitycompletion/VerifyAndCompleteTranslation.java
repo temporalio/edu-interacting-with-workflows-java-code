@@ -25,11 +25,11 @@ public class VerifyAndCompleteTranslation {
 
     // Pass in the translated text as a command line argument and pretend to "verify"
     // the results
-    String result = args[1];
+    TranslationActivityOutput result = new TranslationActivityOutput(args[1]);
 
     ActivityCompletionClient activityCompletionClient = client.newActivityCompletionClient();
     
-    activityCompletionClient.complete(taskToken, new TranslationActivityOutput(result));
+    activityCompletionClient.complete(taskToken, result);
     
     System.exit(0);
   }

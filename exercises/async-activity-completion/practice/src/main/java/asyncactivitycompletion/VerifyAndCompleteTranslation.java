@@ -22,13 +22,11 @@ public class VerifyAndCompleteTranslation {
     
     
     // TODO: PART C: Read in the taskToken from args[0] and decode it from Base64
-    byte[] taskToken = Base64.getDecoder().decode(args[0]);
 
-    // TODO: PART C: Get the translated text from args[1]
+    // TODO: PART C: Get the translated text from args[1] and use it to create a
+    // new TranslationActivityOutput object
 
     ActivityCompletionClient activityCompletionClient = client.newActivityCompletionClient();
-    
-    TranslationActivityOutput result = new TranslationActivityOutput(result);
 
     // TODO: PART C: Call the `complete()` method using the `activityCompletionClient` object
     // from above. The call should contain the `taskToken` and the `result`.
