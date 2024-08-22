@@ -15,7 +15,7 @@ public class SignalClient {
     // TODO: PART A: Set Workflow ID
     PizzaWorkflow workflow = client.newWorkflowStub(PizzaWorkflow.class, "CHANGE_ME");
 
-    // TODO: PART A: Call fulfillOrderSignal, passing `true`
+    // TODO: PART B: Call fulfillOrderSignal, passing `true`
 
     System.exit(0);
   }

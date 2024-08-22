@@ -99,9 +99,9 @@ temporal workflow query \
 
 It will produce the same result:
 
-```
+```bash
 Query result:
-["Out for delivery"]
+  QueryResult  "Out for delivery"
 ```
 
 ## Part E: Sending a Signal and Querying a Closed Workflow
@@ -129,7 +129,7 @@ completes successfully, then Query the closed Workflow.
    5. You should get the result
    ```bash
    Query result:
-   ["Order complete"]
+     QueryResult  "Order complete"
    ```
 
 ### This is the end of the exercise.

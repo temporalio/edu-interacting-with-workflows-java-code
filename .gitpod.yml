@@ -1,4 +1,4 @@
-image: temporalio/gitpod-edu:1.2
+image: temporalio/gitpod-edu:1.3
 tasks:
     # task links a bash configuration file to a location that is not
     # specific to this course (/etc/bash.bashrc sources it from there)
@@ -15,6 +15,14 @@ tasks:
         --ui-port 8080 \
         --db-filename /workspace/.cluster-persistence.db
     openMode: tab-after
+  - name: Microservice
+    command: |
+      source /workspace/edu-interacting-with-workflows-java-code/.bash.cfg
+      cd utilities/microservice
+      mvn clean compile
+      echo "Translation Microservice running on this terminal"
+      mvn exec:java -Dexec.mainClass="translationapi.Microservice"
+    openMode: split-right
   - name: Display Web UI
     command: |
       echo "Waiting for server...."
