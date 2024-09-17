@@ -29,24 +29,26 @@ the code.
 
 In this part of the exercise, you will define your Signal.
 
-1. Open the `PizzaWorkflow.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory.
-1. Define the void method `fulfillOrderSignal` in the interface. Annotate the method with `@SignalMethod`. It should take a single boolean that signifies if the order was fulfilled.
-1. Save the file.
-1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory.
+1. Open the `PizzaWorkflow.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory
+1. Define a method `fulfillOrderSignal` in the interface. It should return `void` and take a `boolean` as an input parameter,
+   which signifies whether the order was fulfilled.
+1. Annotate the new `fulfillOrderSignal` method with `@SignalMethod`
+1. Save the file
+1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory
 1. Implement the `fulfillOrderSignal` method
    1. This method should set the instance variable `fulfilled` the the value
-      of the boolean that was passed in as a parameter.
+      of the boolean that was passed in as a parameter
 
 ## Part B: Handling the Signal
 
 You will now handle the Signal you defined in part A, and let the Workflow know what to do when it encounters the `fulfillOrderSignal`.
 
 1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory.
-   1. In , locate the `Workflow.await(() -> this.fulfilled);` call in the `workflow` method. This will block the Workflow until a Signal is received.
+   1. In the `orderPizza` method, locate the `Workflow.await(() -> this.fulfilled);` call in the `workflow` method. This will block the Workflow until a Signal is received.
    1. Locate the code that crafts the `Bill` object and the `try/catch` block that invokes the `sendBill()` method:
-      1. Wrap this call in an if statement that checks to see if the value of the instance variable `fulfilled` is true. If so, execute the activity.
-      1. Add a logging statement within the `try/catch` statement stating if the Workflow execution was complete or not and provide the result.
-1. Save the file.
+      1. Wrap this call in an if statement that checks to see if the value of the instance variable `fulfilled` is true. If so, execute the activity
+      1. Add a logging statement within the `try/catch` block stating if the Workflow Execution was complete or not and provide the result
+1. Save the file
 
 ## Part C: Create a Stub on the Pizza Workflow
 
@@ -59,8 +61,8 @@ In this part of the exercise, you will create a stub on the Workflow that you wi
   ```java
   PizzaWorkflow workflow = Workflow.newExternalWorkflowStub(PizzaWorkflow.class, workflowID);
   ```
-  to create a stub to retrieve a handle of `pizzaWorkflow` using its Workflow ID.
-1. Save the file, but leave it open for the next part.
+  to create a stub to retrieve a handle of `pizzaWorkflow` using its Workflow ID
+1. Save the file, but leave it open for the next part
 
 ## Part D: Signaling Your Workflow
 
@@ -70,7 +72,7 @@ After you have created a handle, you can see there is some logic to make and del
 
 1. After the successful invocations of the activities, use the `workflow` object to call the `fulfillOrderSignal()` method, sending the value of `true`
 1. Within the `catch` block, use the `workflow` object to call the `fulfillOrderSignal()` method but instead send the value of `false` indicating the Workflow was not successful
-3. Save the file.
+3. Save the file
 
 ## Part E: Start the Workers
 
@@ -84,7 +86,7 @@ At this point, you can start the Worker that registers your Workflows and Activi
    ```
    1. _Be sure to do this for **every** terminal_
 1. Compile the code using `mvn clean compile`
-1. In a terminal, run the command `mvn exec:java -Dexec.mainClass="sendingsignalsexternal.SendSignalExternalWorker"` to start the Worker.
+1. In a terminal, run the command `mvn exec:java -Dexec.mainClass="sendingsignalsexternal.SendSignalExternalWorker"` to start the Worker
    1. Make sure you are in the correct directory by running `ex1`
    1. If you're in the GitPod environment, you can instead run `ex1w`
 1. You should see output similar to the following from your Worker:
@@ -97,7 +99,7 @@ At this point, you can start the Worker that registers your Workflows and Activi
 
 ## Part F: Run Both Workflows
 
-Now it is time to start the Workflows. In `Starter.java` you'll see that we start both Workflows, one right after the other. This is done Asynchronously so the PizzaOrderWorkflow doesn't block, waiting on the Signal from the FulfillOrderWorkflow. 
+Now it is time to start the Workflows. In `Starter.java` you'll see that we start both Workflows, one right after the other. This is done asynchronously so the PizzaOrderWorkflow doesn't block waiting on the Signal from the FulfillOrderWorkflow. 
 
 ```java
 CompletableFuture<OrderConfirmation> orderConfirmation = WorkflowClient.execute(pizzaWorkflow::orderPizza, order);
@@ -106,11 +108,11 @@ CompletableFuture<String> fulfillOrderResult = WorkflowClient.execute(orderWorkf
     pizzaWorkflowID);
 ```
 
-These Workflows could be started in separate files and even run on separate machines. For the sake of Simplicity they are combined in this exercise.
+These Workflows could be started in separate files and even run on separate machines. For the sake of simplicity, they are combined in this exercise.
 
 To start both Workflows, run the following commands _once_:
 
-1. In another terminal, run the command `mvn exec:java -Dexec.mainClass="sendingsignalsexternal.Starter"` to start both Workflows.
+1. In another terminal, run the command `mvn exec:java -Dexec.mainClass="sendingsignalsexternal.Starter"` to start both Workflows
    1. If you're in the GitPod environment, you can run `ex1st`
    1. You should receive some logging from your Worker along these lines when the Workflow has finished:
    ```bash
