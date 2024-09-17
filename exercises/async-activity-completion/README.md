@@ -3,7 +3,7 @@
 During this exercise, you will:
 
 - Retrieve a task token from your Activity execution
-- Set the `doNotCompleteOnReturn()` context to indicate that the Activity is waiting for an external completion.
+- Set the `doNotCompleteOnReturn()` context to indicate that the Activity is waiting for an external completion
 - Use another Temporal Client to communicate the result of the asynchronous Activity back to the Workflow
 
 Make your changes to the code in the `practice` subdirectory (look for `TODO` comments that will guide you to where you should make changes to the code). If you need a hint or want to verify your changes, look at the complete version in the `solution` subdirectory.
@@ -34,12 +34,12 @@ the code.
 
 ## Part A: Retrieving the Task Token
 
-1. Open the `TranslationActivitiesActivitiesImpl.java` file in the `src/main/java/asyncactivitycompletion` subdirectory.
-1. In the `translateTerm()` method, add the line `ActivityExecutionContext context = Activity.getExecutionContext();` to get the current Execution Context of the Activity.
+1. Open the `TranslationActivitiesActivitiesImpl.java` file in the `src/main/java/asyncactivitycompletion` subdirectory
+1. In the `translateTerm()` method, add the line `ActivityExecutionContext context = Activity.getExecutionContext();` to get the current Execution Context of the Activity
 1. Add a call to `getTaskToken()` from the `context` object above and store it in a `byte []` named `taskToken`
-1. Uncomment the line below to convert the `taskToken` byte array to Base64.
-1. Log the Task Token at `info` level using the `logger` object for later use. You will need to convert this to a new String.
-1. Save the file.
+1. Uncomment the line below to convert the `taskToken` byte array to Base64
+1. Log the value of the `encoded` variable, the Base64-encoded Task Token created by the previous step, at `info` level using the `logger` object
+1. Save the file
 
 ## Part B: Set Your Activity to `doNotCompleteOnReturn()`
 
@@ -60,12 +60,12 @@ include them in Activities that will complete Asynchronously.
 1. Open the `VerifyAndCompleteTranslation.java` file in the `src/main/java/asyncactivitycompletion` subdirectory.
 1. The first thing you'll need to do is add some way of supplying the `taskToken` and translated text specific to the Activity you are trying to complete at runtime. In a production system, you might store and retrieve the token from a database, but for now, you can configure this Client to accept it as a command line argument. Both the `taskToken` and `translation` can be found in the logs of the Worker.
    1. Read in the token from the command line `args[0]` and decode the base 64, storing it in a `byte[]`. Hint, invert the call in `TranslationActivitiesImpl.java`
-   1. Read in the Translation of the phrase that was outputted in the Worker logs as `args[1]`
+   1. The translated term is provided as `args[1]`. Store this in a variable named `result`.
 1. Add a call to the `complete();` method using the `activityCompletionClient`. This call should provide the task token and result of the Activity. This notifies Temporal that the Activity should not be completed on return and will be completed asynchronously.
    1. The result has already been instantiated into a `TranslationActivityOutput` object for you.
 1. Save the file.
 
-## Part D: Running the Workflow and Completing it Asynchronously
+## Part D: Running the Workflow
 
 At this point, you can run your Workflow. As with the Signal Exercise, the Workflow will not return on its own -- in this case, because your Activity is set to complete asynchronously, and will wait to receive `complete()`.
 
@@ -78,7 +78,7 @@ At this point, you can run your Workflow. As with the Signal Exercise, the Workf
    1. If you're in the GitPod environment you can instead run `ex4`
    1. Invoke the Workflow using `mvn exec:java -Dexec.mainClass='asyncactivitycompletion.Starter' -Dexec.args="Mason de"`
       If you're in the GitPod environment you can instead run `ex4st Mason de`, replacing the name with yours
-1. Navigate back to the Worker terminal. Your work will produce some logging, eventually including your `taskToken`:
+1. Navigate back to the Worker terminal. Your work will produce some log messages, eventually including your encoded Task Token:
 
 ```bash
 10:28:40.579 INFO  - sayHelloGoodbye Workflow Invoked with input name: Mason language code: de
@@ -87,6 +87,8 @@ At this point, you can run your Workflow. As with the Signal Exercise, the Workf
 10:28:40.614 INFO  - [ACTIVITY INVOKED] translateTerm invoked with input term: hello language code: de
 10:28:40.642 INFO  - Translation Service returned: Hallo
 ```
+
+## Part E: Completing the Activity from Another Client
 
 1. You can now use this token to send a `complete()` call from another client. In another terminal, navigate to the `practice` subdirectory
    1. If you're in the GitPod environment you can instead run `ex4`
