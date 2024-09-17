@@ -30,30 +30,30 @@ the code.
 
 In this part of the exercise, you will create a stub on the Workflow that you wish to Signal, which is `PizzaWorkflow`.
 
-1. Recall that the Workflow ID for this Workflow is `pizza-workflow-order-XD001`.
-1. Edit the `SignalClient.java` in the `src/main/java/sendingsignalsclient` subdirectory and modify the `newWorkflowStub()` method to get a stub of a running workflow.
-   1. Change the Workflow ID from `CHANGE_ME` to the Workflow ID of the running Workflow.
-1. Save the file.
+1. Recall that the Workflow ID for this Workflow is `pizza-workflow-order-XD001`
+1. Edit the `SignalClient.java` in the `src/main/java/sendingsignalsclient` subdirectory and modify the `newWorkflowStub()` method to get a stub for that Workflow
+   1. Change the Workflow ID from `CHANGE_ME` to the Workflow ID above
+1. Save the file
 
 ## Part B: Sending a Signal to the Pizza Workflow
 
-Now that you have a stub on the Workflow you wish to Signal (`PizzaWorkflow`), we will now send `fulfillOrderSignal`.
+Now that you have a stub for the Workflow you wish to Signal (`PizzaWorkflow`), we will now send `fulfillOrderSignal`.
 
-1. Continue editing the `SignalClient.java` in the `src/main/java/sendingsignalsclient` subdirectory.
-1. Using the stub defined above, send the signal by calling the `fulfillOrderSignal()` method, passing `true` as a parameter.
-1. Save the file.
+1. Continue editing the `SignalClient.java` in the `src/main/java/sendingsignalsclient` subdirectory
+1. Using the stub defined above, send the Signal by calling the `fulfillOrderSignal()` method, passing `true` as a parameter
+1. Save the file
 
 
 ## Part C: Run the Workflow
 
 To run the Workflow:
 
-1. In all terminals, change directories to the Exercise 2 directory `sending-signals-external`.
-   1. If you're in the GitPod environment, you can run `ex2`.
-1. In one terminal, compile the code using `mvn clean compile`.
-1. In the same terminal, start the Worker by running `mvn exec:java -Dexec.mainClass="sendingsignalsclient.SendSignalClientWorker"`.
-   1. If you're in the GitPod environment, you can instead run `ex2w` to start the worker
-1. In another terminal, start the Workflow by running `mvn exec:java -Dexec.mainClass="sendingsignalsclient.Starter"`. This will start the Workflow, which you will see waiting for a Signal.
+1. In all terminals, change directories to the Exercise 2 directory `sending-signals-external`
+   1. If you're in the GitPod environment, you can run `ex2`
+1. In one terminal, compile the code using `mvn clean compile`
+1. In the same terminal, start the Worker by running `mvn exec:java -Dexec.mainClass="sendingsignalsclient.SendSignalClientWorker"`
+   1. If you're in the GitPod environment, you can instead run `ex2w` to start the Worker
+1. In another terminal, start the Workflow by running `mvn exec:java -Dexec.mainClass="sendingsignalsclient.Starter"`. This will start the Workflow, which you will see waiting for a Signal
    1. If you're in the GitPod environment, you can instead run `ex2st` to start the Workflow
 1. In another terminal, send the signal by running `mvn exec:java -Dexec.mainClass="sendingsignalsclient.SignalClient"`
    1. If you're in the GitPod environment, you can instead run `ex2sg` to send the Signal
