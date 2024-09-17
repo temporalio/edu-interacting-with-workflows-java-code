@@ -30,10 +30,10 @@ the code.
 
 In this part of the exercise, you will define your Query.
 
-1. Open the `PizzaWorkflow.java` file in the `practice/src/main/java/queryingworkflows` subdirectory
+1. Open the `PizzaWorkflow.java` file in the `practice/src/main/java/queryingworkflows/orderpizza` subdirectory
    1. Define the Query method `orderStatus` in the interface. Annotate the method with `@QueryMethod`. It should return a String representing the current status of the order and take no parameters.
-   2. Save the file.
-1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/queryingworkflows` subdirectory.
+   2. Save the file
+1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/queryingworkflows/orderpizza` subdirectory.
    1. Implement the `orderStatus` method
       1. This method should read the instance variable `status` and return it
    2. Set the value of `status` at specific points in the Workflow:
@@ -41,17 +41,17 @@ In this part of the exercise, you will define your Query.
       1. Set the value of `status` to `Out for delivery` right above the call to await the Signal
       1. Set the value of `status` to `Order complete` as the last line in the `try` block where the `sendBill()` Activity was invoked
       1. **Note**: You can set the value of status anywhere for whichever states you would like to report on. Feel free with experimenting and adding more statuses
-   3. Save the file.
+   3. Save the file
 
 ## Part B: Performing a Query from a Client
 
 In this part of the exercise, you will create another Temporal client that sends
 a Query.
 
-1. Open the `QueryClient.java` file in the `practice/src/main/java/queryingworkflows` subdirectory.
-   1. Call the `orderStatus()` method using the `workflow` object.
-   2. Print the result of the call to standard out.
-   3. Save the file.
+1. Open the `QueryClient.java` file in the `practice/src/main/java/queryingworkflows` subdirectory
+   1. Call the `orderStatus()` method using the `workflow` object
+   2. Print the result of the call to standard out
+   3. Save the file
 
 ## Part C: Running the Workflow and the Query
 
@@ -65,12 +65,12 @@ At this point, you can run your Workflow. Because it is the same Workflow from t
    ```
    3. _Be sure to do this for **every** terminal_
 2. Compile the code using `mvn clean compile`
-3. In a terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.QueryingWorkflowsWorker'` to start the Worker.
+3. In a terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.QueryingWorkflowsWorker'` to start the Worker
    1. Make sure you are in the correct directory by running `ex3`
    2. If you're in the GitPod environment, you can instead run `ex3w`
-4. In another terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.Starter'` to start the Workflow.
+4. In another terminal, run the command `mvn exec:java -Dexec.mainClass='queryingworkflows.Starter'` to start the Workflow
 
-   1. If you're in the GitPod environment, you can run `ex2st`
+   1. If you're in the GitPod environment, you can run `ex3st`
    2. You should receive some logging from your Worker along these lines:
 
    ```bash
@@ -87,9 +87,9 @@ At this point, you can run your Workflow. Because it is the same Workflow from t
    Out for delivery
    ```
 
-## Part D: Sending a Query from the Command Line
+## Part D: Issuing a Query from the Command Line
 
-To send a Query from the CLI, use `temporal workflow query` with the same parameters as your client:
+To query the Workflow Execution from the CLI, use `temporal workflow query` with the same parameters as your client:
 
 ```bash
 temporal workflow query \
@@ -110,7 +110,7 @@ Now you can send a Signal to your Workflow as in the previous exercise so it
 completes successfully, then Query the closed Workflow.
 
 1. In the same terminal you sent the Query, send the Signal to the Workflow using
-   command `mvn exec:java -Dexec.mainClass='queryingworkflows.SignalClient'`.
+   command `mvn exec:java -Dexec.mainClass='queryingworkflows.SignalClient'`
    1. Make sure you are in the correct directory by running `ex3`
    2. If you're in the GitPod environment, you can instead run `ex3sg`
    3. You won't see any output from the Signal, but you should see the result
