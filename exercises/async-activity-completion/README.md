@@ -34,7 +34,7 @@ the code.
 
 ## Part A: Retrieving the Task Token
 
-1. Open the `TranslationActivitiesActivitiesImpl.java` file in the `src/main/java/asyncactivitycompletion` subdirectory
+1. Open the `TranslationActivitiesImpl.java` file in the `src/main/java/asyncactivitycompletion` subdirectory
 1. In the `translateTerm()` method, add the line `ActivityExecutionContext context = Activity.getExecutionContext();` to get the current Execution Context of the Activity
 1. Add a call to `getTaskToken()` from the `context` object above and store it in a `byte []` named `taskToken`
 1. Uncomment the line below to convert the `taskToken` byte array to Base64
