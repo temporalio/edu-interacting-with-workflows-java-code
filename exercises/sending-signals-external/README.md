@@ -36,19 +36,25 @@ In this part of the exercise, you will define your Signal.
 1. Save the file
 1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory
 1. Implement the `fulfillOrderSignal` method
-   1. This method should set the instance variable `fulfilled` the the value
-      of the boolean that was passed in as a parameter
+   1. This method should set the instance variable `fulfilled` to the value
+      of the boolean that was passed in as a parameter, and it
+      should set the value of the instance variable `signalProcessed` to true.
 
 ## Part B: Handling the Signal
 
 You will now handle the Signal you defined in part A, and let the Workflow know what to do when it encounters the `fulfillOrderSignal`.
 
 1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory.
-   1. In the `orderPizza` method, locate the `Workflow.await(() -> this.fulfilled);` call in the `workflow` method. This will block the Workflow until a Signal is received.
-   1. Locate the code that crafts the `Bill` object and the `try/catch` block that invokes the `sendBill()` method:
-      1. Wrap this call in an if statement that checks to see if the value of the instance variable `fulfilled` is true. If so, execute the activity
-      1. Add a logging statement within the `try/catch` block stating if the Workflow Execution was complete or not and provide the result
-1. Save the file
+
+In the `orderPizza` method, locate the `Workflow.await(Duration.ofSeconds(3),() -> this.signalProcessed);` call in the Workflow Method. This will block the Workflow until a Signal is received or 3 seconds have passed.
+
+Locate the code that crafts the `Bill` object and the `try/catch` block that invokes the `sendBill()` method
+
+2. Wrap this block in an if statement that checks to see if the value of the instance variable `fulfilled` is true.
+
+If so, this will execute the activity to bill the customer.
+
+3. Save the file
 
 ## Part C: Create a Stub on the Pizza Workflow
 
@@ -68,7 +74,7 @@ In this part of the exercise, you will create a stub on the Workflow that you wi
 
 Now that you have a stub on the Workflow you wish to Signal (`pizzaWorkflow`), we will now send `pizzaWorkflow` a Signal.
 
-After you have created a handle, you can see there is some logic to make and deliver the pizzas. Once that is done successfully, the Signal should be sent.
+After you have created the stub, you can see there is some logic to make and deliver the pizzas. Once that is done successfully, the Signal should be sent.
 
 1. After the successful invocations of the activities, use the `workflow` object to call the `fulfillOrderSignal()` method, sending the value of `true`
 1. Within the `catch` block, use the `workflow` object to call the `fulfillOrderSignal()` method but instead send the value of `false` indicating the Workflow was not successful

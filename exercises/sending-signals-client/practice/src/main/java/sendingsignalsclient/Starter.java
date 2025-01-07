@@ -14,6 +14,7 @@ import sendingsignalsclient.orderpizza.PizzaWorkflow;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Starter {
   public static void main(String[] args) throws Exception {
@@ -34,7 +35,7 @@ public class Starter {
 
     PizzaWorkflow pizzaWorkflow = client.newWorkflowStub(PizzaWorkflow.class, pizzaWorkflowOptions);
 
-    OrderConfirmation orderConfirmation = pizzaWorkflow.orderPizza(order);
+    Optional<OrderConfirmation> orderConfirmation = pizzaWorkflow.orderPizza(order);
     //CompletableFuture<OrderConfirmation> orderConfirmation = WorkflowClient.execute(pizzaWorkflow::orderPizza, order);
 
 
