@@ -64,7 +64,7 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
 
     logger.info("distance is {}", distance.getKilometers());
 
-    Workflow.await(Duration.ofSeconds(3),() -> this.signalProcessed);
+    Workflow.await(Duration.ofSeconds(10),() -> this.signalProcessed);
 
     OrderConfirmation confirmation;
 

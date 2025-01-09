@@ -36,7 +36,8 @@ public class Starter {
     PizzaWorkflow pizzaWorkflow = client.newWorkflowStub(PizzaWorkflow.class, pizzaWorkflowOptions);
 
     Optional<OrderConfirmation> orderConfirmation = pizzaWorkflow.orderPizza(order);
-    //CompletableFuture<OrderConfirmation> orderConfirmation = WorkflowClient.execute(pizzaWorkflow::orderPizza, order);
+    // CompletableFuture<Optional<OrderConfirmation>> orderConfirmationFuture = WorkflowClient.execute(pizzaWorkflow::orderPizza, order);
+    // Optional<OrderConfirmation> orderConfirmation = orderConfirmationFuture.get();
 
 
     System.out.printf("Workflow result: %s\n", orderConfirmation);
