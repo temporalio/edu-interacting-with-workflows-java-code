@@ -33,7 +33,9 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
   @Override
   public OrderConfirmation orderPizza(PizzaOrder order) {
 
-    // TODO: PART A: Assign the value `Started` to `status`
+    // TODO: PART A: Assign the value `Started` to `status`. (It is declared above).
+
+
     String orderNumber = order.getOrderNumber();
     Customer customer = order.getCustomer();
     List<Pizza> items = order.getItems();
