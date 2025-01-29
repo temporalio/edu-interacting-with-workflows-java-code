@@ -18,20 +18,6 @@ the `utilities/microservice` directory and using the following command:
 mvn exec:java -Dexec.mainClass="translationapi.Microservice"
 ```
 
-### GitPod Environment Shortcuts
-
-If you are executing the exercises in the provided GitPod environment, you
-can take advantage of certain aliases to aid in navigation and execution of
-the code.
-
-| Command           | Action                                                                                                                                                       |
-| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ex4`             | Change to Exercise 4 Practice Directory                                                                                                                      |
-| `ex4s`            | Change to Exercise 4 Solution Directory                                                                                                                      |
-| `ex4w`            | Execute the Exercise 4 Worker. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)                               |
-| `ex4st NAME LANGUAGE_CODE`           | Execute the Exercise 4 Starter, passing in your name and a valid lanuage code. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)                              |
-| `ex4c TASK_TOKEN TRANSLATION` | Complete the Exercise 4 Activity, passing in the Task Token and verified translation. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`) |
-
 ## Part A: Retrieving the Task Token
 
 1. Open the `TranslationActivitiesImpl.java` file in the `src/main/java/asyncactivitycompletion` subdirectory
