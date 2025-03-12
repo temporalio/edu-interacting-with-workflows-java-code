@@ -11,21 +11,6 @@ In this part of the exercise, we have removed the `FulfillOrderWorkflow` Workflo
 
 We will skip the defining and handling of `FulfillOrderSignal` that were handled in `src/main/java/sendingsignalsclient/orderpizza`. This exercise will solely focus on the Client file.
 
-### GitPod Environment Shortcuts
-
-If you are executing the exercises in the provided GitPod environment, you
-can take advantage of certain aliases to aid in navigation and execution of
-the code.
-
-| Command | Action                                                                                                                             |
-| :------ | :--------------------------------------------------------------------------------------------------------------------------------- |
-| `ex2`   | Change to Exercise 1 Practice Directory                                                                                            |
-| `ex2s`  | Change to Exercise 1 Solution Directory                                                                                            |
-| `ex2w`  | Execute the Exercise 1 Worker. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)     |
-| `ex2st` | Execute the Exercise 1 Starter. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`)    |
-| `ex2sg` | Send the Exercise 1 Signal. Must be within the appropriate directory for this to succeed. (either `practice` or `solution`) |
-
-
 ## Part A: Create a Stub on the Pizza Workflow
 
 In this part of the exercise, you will create a stub on the Workflow that you wish to Signal, which is `PizzaWorkflow`.
