@@ -46,7 +46,7 @@ At this point, you can run your Workflow. Because it is the same Workflow from t
    1. If you're in the GitPod environment you can instead run `ex3`
    2. Otherwise, use:
    ```bash
-   cd exercises/querying-workflows/practice/src
+      cd exercises/querying-workflows/practice/
    ```
    3. _Be sure to do this for **every** terminal_
 2. Compile the code using `mvn clean compile`

@@ -24,6 +24,7 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
   public static final Logger logger = Workflow.getLogger(PizzaWorkflowImpl.class);
 
   private boolean fulfilled;
+  private boolean signalProcessed;
 
   ActivityOptions options = ActivityOptions.newBuilder().setStartToCloseTimeout(Duration.ofSeconds(5)).build();
 
@@ -37,6 +38,7 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
     List<Pizza> items = order.getItems();
     boolean isDelivery = order.isDelivery();
     Address address = order.getAddress();
+    signalProcessed = false;
 
     logger.info("orderPizza Workflow Invoked");
 
@@ -61,7 +63,7 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
 
     logger.info("distance is {}", distance.getKilometers());
 
-    Workflow.await(() -> this.fulfilled);
+    Workflow.await(Duration.ofSeconds(10),() -> this.signalProcessed);
 
     OrderConfirmation confirmation;
 
@@ -87,5 +89,6 @@ public class PizzaWorkflowImpl implements PizzaWorkflow {
   @Override
   public void fulfillOrderSignal(boolean bool) {
     this.fulfilled = bool;
+    signalProcessed = true;
   }
 }

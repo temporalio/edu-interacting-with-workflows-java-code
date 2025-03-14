@@ -24,17 +24,17 @@ In this part of the exercise, you will define your Signal.
 1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory
 1. Implement the `fulfillOrderSignal` method
    1. This method should set the instance variable `fulfilled` the the value
-      of the boolean that was passed in as a parameter
+      of the boolean that was passed in as a parameter, and set the value of the
+      instance variable `signalProcessed` to true.
 
 ## Part B: Handling the Signal
 
 You will now handle the Signal you defined in part A, and let the Workflow know what to do when it encounters the `fulfillOrderSignal`.
 
 1. Open the `PizzaWorkflowImpl.java` file in the `practice/src/main/java/sendingsignalsexternal/orderpizza` subdirectory.
-   1. In the `orderPizza` method, locate the `Workflow.await(() -> this.fulfilled);` call in the `workflow` method. This will block the Workflow until a Signal is received.
+   1. In the `orderPizza` method, locate the `Workflow.await(Duration.ofSeconds(3),() -> this.signalProcessed);` call in the Workflow Method. This will block the Workflow until a Signal is received or 3 seconds have passed.
    1. Locate the code that crafts the `Bill` object and the `try/catch` block that invokes the `sendBill()` method:
       1. Wrap this call in an if statement that checks to see if the value of the instance variable `fulfilled` is true. If so, execute the activity
-      1. Add a logging statement within the `try/catch` block stating if the Workflow Execution was complete or not and provide the result
 1. Save the file
 
 ## Part C: Create a Stub on the Pizza Workflow
