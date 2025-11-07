@@ -2,6 +2,12 @@
 *.class
 **target*
 
+# macOS detritus
+.DS_Store
+
+# IntelliJ clutter
+.idea
+
 # Log file
 *.log
 
